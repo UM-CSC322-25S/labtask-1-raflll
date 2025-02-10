@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Check if two arguments are provided
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <old_extension> <new_extension>"
+    exit 1
+fi
+
+old_ext=$1
+new_ext=$2
+files_found=false
+
+for file in *."$old_ext"; do
+    if [ -e "$file" ]; then
+        files_found=true
+        base_name=$(basename "$file" ."$old_ext")
+        new_name="${base_name}.$new_ext"
+        mv "$file" "$new_name"
+        echo "Renamed: $file -> $new_name"
+    fi
+done
+
+if [ "$files_found" = false ]; then
+    echo "Error: No files found with .$old_ext extension."
+    exit 1
+fi
+

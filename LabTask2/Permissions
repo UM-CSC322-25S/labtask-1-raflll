@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir ~/LabTask2/IveGotRights
+chmod 751 ~/LabTask2/IveGotRights
